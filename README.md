@@ -76,3 +76,6 @@ _Nota: Substitua [entidade] pelas entidades específicas do seu projeto, como "u
 -   Uso de DTOs para transferência de dados
     
 -   Documentação da API com Swagger
+
+
+Diogo Makoto Mano //3SIR//RM98446
