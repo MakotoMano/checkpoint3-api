@@ -65,6 +65,43 @@
 
 _Nota: Substitua [entidade] pelas entidades específicas do seu projeto, como "usuários", "produtos", etc._
 
+## Executar via imagem publicada (Docker Hub):
+
+docker run --rm --name checkpoint_api \
+  -p 8080:8080 \
+  -e SPRING_PROFILES_ACTIVE=docker \
+  -e SPRING_DATASOURCE_URL=jdbc:postgresql://host.docker.internal:5432/appdb \
+  -e SPRING_DATASOURCE_USERNAME=app \
+  -e SPRING_DATASOURCE_PASSWORD=app123 \
+  seuusuario/checkpoint3-api:latest
+
+## Executar via docker-compose:
+
+- docker compose up -d --build
+
+## Swagger:
+
+- http://localhost:8080/swagger-ui.html
+(com springdoc; se preferir o path padrão: /swagger-ui/index.html).
+
+## Comandos para publicar no Docker Hub:
+
+docker login
+docker tag makotomano/checkpoint3-api:latest makotomano/checkpoint3-api:1.0.0
+docker push makotomano/checkpoint3-api:1.0.0
+
+link dockerhub: https://hub.docker.com/repository/docker/makotomano/checkpoint3-api/general
+
+# Comandos para subir as imagens do docker compose
+
+# Subir os containers
+docker-compose up -d
+
+# Ver logs da API
+docker-compose logs -f api
+
+# Derrubar tudo
+docker-compose down
 ----------
 
 ## 🔒 Validações e Boas Práticas
