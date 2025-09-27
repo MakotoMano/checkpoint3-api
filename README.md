@@ -86,17 +86,17 @@ docker run --rm --name checkpoint_api \
 
 ## Comandos para publicar no Docker Hub:
 
-docker login
-docker tag makotomano/checkpoint3-api:latest makotomano/checkpoint3-api:1.0.0
-docker push makotomano/checkpoint3-api:1.0.0
+- docker login
+- docker tag makotomano/checkpoint3-api:latest makotomano/checkpoint3-api:1.0.0
+- docker push makotomano/checkpoint3-api:1.0.0
 
 link dockerhub: https://hub.docker.com/repository/docker/makotomano/checkpoint3-api/general
 
 # Comandos para subir as imagens do docker compose
 
-docker-compose up -d
-docker-compose logs -f api
-docker-compose down
+- docker-compose up -d
+- docker-compose logs -f api
+- docker-compose down
 ----------
 
 ## 🔒 Validações e Boas Práticas
