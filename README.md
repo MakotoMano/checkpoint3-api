@@ -94,13 +94,13 @@ link dockerhub: https://hub.docker.com/repository/docker/makotomano/checkpoint3-
 
 # Comandos para subir as imagens do docker compose
 
-# Subir os containers
+## Subir os containers
 docker-compose up -d
 
-# Ver logs da API
+## Ver logs da API
 docker-compose logs -f api
 
-# Derrubar tudo
+##Derrubar tudo
 docker-compose down
 ----------
 
@@ -115,4 +115,6 @@ docker-compose down
 -   Documentação da API com Swagger
 
 
-Diogo Makoto Mano //3SIR//RM98446
+Diogo Makoto Mano - 3SIR - RM98446
+Thiago Ratão Passerini - 3SIR - RM551351
+Victor Espanhol Henrique Santos - 3SIR - RM552532
