@@ -94,13 +94,8 @@ link dockerhub: https://hub.docker.com/repository/docker/makotomano/checkpoint3-
 
 # Comandos para subir as imagens do docker compose
 
-## Subir os containers
 docker-compose up -d
-
-## Ver logs da API
 docker-compose logs -f api
-
-##Derrubar tudo
 docker-compose down
 ----------
 
