@@ -1,8 +1,4 @@
-Amei o projeto, Diogo! Aqui vai um **README.md** mais enxuto, profissional e “copiar-e-colar”, mantendo tudo que você já trouxe e organizando melhor. Sinta-se à vontade pra substituir o conteúdo abaixo no seu repositório. 👇
-
----
-
-# 📦 Checkpoint 3 → Checkpoint 4 (Docker & Compose)
+# 📦 Checkpoint 3 → Checkpoint 1/Segundo Semestre (Docker & Compose)
 
 > API Java com Spring Boot para consolidar conceitos de **REST**, **camadas de serviço/repositório**, **validação**, **testes** e **empacotamento com Docker/Docker Compose**.
 
