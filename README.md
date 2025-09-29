@@ -1,115 +1,276 @@
+Amei o projeto, Diogo! Aqui vai um **README.md** mais enxuto, profissional e “copiar-e-colar”, mantendo tudo que você já trouxe e organizando melhor. Sinta-se à vontade pra substituir o conteúdo abaixo no seu repositório. 👇
 
-# 📦 Checkpoint 3
+---
 
-**Checkpoint 3** é um projeto desenvolvido em Java, utilizando o framework Spring Boot, com o objetivo de [insira aqui o objetivo do projeto, por exemplo: "gerenciar uma lista de tarefas", "simular um sistema bancário", etc.].
+# 📦 Checkpoint 3 → Checkpoint 4 (Docker & Compose)
 
-----------
+> API Java com Spring Boot para consolidar conceitos de **REST**, **camadas de serviço/repositório**, **validação**, **testes** e **empacotamento com Docker/Docker Compose**.
 
-## 🚀 Tecnologias Utilizadas
+[![Java 17](https://img.shields.io/badge/Java-17+-red)]() [![Spring Boot](https://img.shields.io/badge/Spring%20Boot-3.x-brightgreen)]() [![Maven](https://img.shields.io/badge/Maven-3.9+-blue)]() [![Docker](https://img.shields.io/badge/Docker-24+-informational)]()
 
--   Java 17
-    
--   Spring Boot
-    
--   Maven
-    
--   Spring Data JPA
-    
--   H2 Database (banco de dados em memória)
-    
--   Lombok
-    
+---
 
+## 🔗 Tabela de Conteúdo
 
-----------
+* [Objetivos](#-objetivos)
+* [Tech stack](#-tech-stack)
+* [Pré-requisitos](#-pré-requisitos)
+* [Como executar (Local)](#️-como-executar-local)
+* [Como executar (Docker)](#-como-executar-docker)
+* [Como executar (Docker Compose)](#-como-executar-docker-compose)
+* [Configuração (.env / perfis)](#-configuração-env--perfis)
+* [Swagger & Consoles](#-swagger--consoles)
+* [Funcionalidades](#-funcionalidades)
+* [Testes](#-testes)
+* [Boas práticas adotadas](#-boas-práticas-adotadas)
+* [Publicação no Docker Hub](#-publicação-no-docker-hub)
+* [Comandos úteis do Docker](#-comandos-úteis-do-docker)
+* [Autores](#-autores)
 
-## ▶️ Como Executar o Projeto
+---
 
-1.  **Clone o repositório:**
-    
-    bash
-    
-    CopiarEditar
-    
-    `git clone https://github.com/MakotoMano/checkpoint3.git cd checkpoint3` 
-    
-2.  **Execute o projeto com Maven:**
-    
-    arduino
-    
-    CopiarEditar
-    
-    `./mvnw spring-boot:run` 
-    
-3.  **Acesse a aplicação:**
-    
-    -   Swagger UI: [http://localhost:8080/swagger-ui.html](http://localhost:8080/swagger-ui.html)
-        
-    -   H2 Console: [http://localhost:8080/h2-console](http://localhost:8080/h2-console)
-        
+## ✨ Objetivos
 
-----------
+* Fixar conceitos de **API REST** com **Spring Boot**.
+* Praticar **camadas (Controller → Service → Repository)**, **validação**, **tratamento de erros** e **testes**.
+* Aprender **empacotamento com Docker** e **orquestração com Docker Compose**.
 
-## ✅ Funcionalidades
+---
 
--   Cadastro de [entidade]
-    
--   Listagem de [entidade]
-    
--   Atualização de [entidade]
-    
--   Exclusão de [entidade]
-    
--   Outras funcionalidades relevantes
-    
+## 🧰 Tech stack
 
-_Nota: Substitua [entidade] pelas entidades específicas do seu projeto, como "usuários", "produtos", etc._
+* **Linguagem:** Java 17+
+* **Framework:** Spring Boot (Web, Validation, JPA, Actuator)
+* **Documentação:** springdoc-openapi (Swagger)
+* **Persistência:** Spring Data JPA
+* **Banco:** H2 (dev) e PostgreSQL (docker)
+* **Build:** Maven
+* **Container:** Docker / Docker Compose
 
-## Executar via imagem publicada (Docker Hub):
+---
 
+## ✅ Pré-requisitos
+
+* **JDK 17+**
+* **Maven 3.9+** (ou `mvnw`)
+* **Docker 24+** e **Docker Compose**
+
+---
+
+## ▶️ Como executar (Local)
+
+1. **Clone o repositório**
+
+```bash
+git clone https://github.com/MakotoMano/checkpoint3.git
+cd checkpoint3
+```
+
+2. **Rodando com Maven (perfil dev)**
+
+```bash
+./mvnw spring-boot:run
+# ou
+mvn spring-boot:run
+```
+
+3. **Acessos**
+
+* Swagger UI: [http://localhost:8080/swagger-ui.html](http://localhost:8080/swagger-ui.html)
+* (Opcional) H2 Console: [http://localhost:8080/h2-console](http://localhost:8080/h2-console)
+
+> **Obs.:** No perfil `dev`, a app pode usar H2 (memória) para facilitar o desenvolvimento.
+
+---
+
+## 🐳 Como executar (Docker)
+
+**Build da imagem**
+
+```bash
+docker build -t makotomano/checkpoint3-api:latest .
+```
+
+**Rodando a imagem publicada**
+
+```bash
 docker run --rm --name checkpoint_api \
   -p 8080:8080 \
   -e SPRING_PROFILES_ACTIVE=docker \
   -e SPRING_DATASOURCE_URL=jdbc:postgresql://host.docker.internal:5432/appdb \
   -e SPRING_DATASOURCE_USERNAME=app \
   -e SPRING_DATASOURCE_PASSWORD=app123 \
-  seuusuario/checkpoint3-api:latest
+  makotomano/checkpoint3-api:latest
+```
 
-## Executar via docker-compose:
+> Em Linux, caso `host.docker.internal` não resolva, use o IP da sua máquina host.
 
-- docker compose up -d --build
+---
 
-## Swagger:
+## 🧩 Como executar (Docker Compose)
 
-- http://localhost:8080/swagger-ui.html
-(com springdoc; se preferir o path padrão: /swagger-ui/index.html).
+**docker-compose.yml (exemplo)**
 
-## Comandos para publicar no Docker Hub:
+```yaml
+services:
+  db:
+    image: postgres:16
+    container_name: checkpoint_db
+    environment:
+      POSTGRES_DB: appdb
+      POSTGRES_USER: app
+      POSTGRES_PASSWORD: app123
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
 
-- docker login
-- docker tag makotomano/checkpoint3-api:latest makotomano/checkpoint3-api:1.0.0
-- docker push makotomano/checkpoint3-api:1.0.0
+  api:
+    image: makotomano/checkpoint3-api:latest
+    container_name: checkpoint_api
+    depends_on:
+      - db
+    environment:
+      SPRING_PROFILES_ACTIVE: docker
+      SPRING_DATASOURCE_URL: jdbc:postgresql://db:5432/appdb
+      SPRING_DATASOURCE_USERNAME: app
+      SPRING_DATASOURCE_PASSWORD: app123
+    ports:
+      - "8080:8080"
 
-link dockerhub: https://hub.docker.com/repository/docker/makotomano/checkpoint3-api/general
+volumes:
+  pgdata:
+```
 
-# Comandos para subir as imagens do docker compose
+**Subir os serviços**
 
-- docker-compose up -d
-- docker-compose logs -f api
-- docker-compose down
-----------
+```bash
+docker compose up -d --build
+# logs em tempo real:
+docker compose logs -f api
+# derrubar
+docker compose down
+```
 
-## 🔒 Validações e Boas Práticas
+---
 
--   Utilização de `@Valid` para validação de entradas
-    
--   Separação de responsabilidades em camadas (Controller, Service, Repository)
-    
--   Uso de DTOs para transferência de dados
-    
--   Documentação da API com Swagger
+## ⚙️ Configuração (.env / perfis)
 
+**Exemplo `.env` (opcional)**
 
-Diogo Makoto Mano - 3SIR - RM98446
-Thiago Ratão Passerini - 3SIR - RM551351
-Victor Espanhol Henrique Santos - 3SIR - RM552532
+```env
+# Perfil ativo
+SPRING_PROFILES_ACTIVE=dev
+
+# Se usar Postgres local
+SPRING_DATASOURCE_URL=jdbc:postgresql://localhost:5432/checkpoint
+SPRING_DATASOURCE_USERNAME=postgres
+SPRING_DATASOURCE_PASSWORD=postgres
+```
+
+**Perfis sugeridos**
+
+* `dev`: foco em desenvolvimento (pode usar H2)
+* `docker`: conexão com Postgres via Compose
+
+---
+
+## 📚 Swagger & Consoles
+
+* **Swagger UI:**
+
+  * [http://localhost:8080/swagger-ui.html](http://localhost:8080/swagger-ui.html)
+  * (alternativo do springdoc) [http://localhost:8080/swagger-ui/index.html](http://localhost:8080/swagger-ui/index.html)
+* **H2 Console (se habilitado no dev):**
+
+  * [http://localhost:8080/h2-console](http://localhost:8080/h2-console)
+
+---
+
+## ✅ Funcionalidades (exemplos)
+
+* Cadastro de **[Entidade]**
+* Listagem de **[Entidade]**
+* Atualização de **[Entidade]**
+* Exclusão de **[Entidade]**
+* Health check: `/actuator/health`
+
+> Substitua **[Entidade]** pelo domínio real do projeto (ex.: `Produto`, `Cliente`, etc.) e, se possível, inclua exemplos de payload.
+
+---
+
+## 🧪 Testes
+
+Rodar a suíte de testes:
+
+```bash
+./mvnw test
+# ou
+mvn test
+```
+
+---
+
+## 🔒 Boas práticas adotadas
+
+* Validação com `@Valid` e Bean Validation
+* Tratamento de erros com **Exception Handler**
+* Camadas claras (**Controller**, **Service**, **Repository**)
+* Uso de **DTOs** para entrada/saída
+* Documentação com **Swagger (springdoc-openapi)**
+* Health/metrics via **Spring Boot Actuator**
+
+---
+
+## ☁️ Publicação no Docker Hub
+
+Recomendado versionar sua imagem além do `latest`.
+
+```bash
+docker login
+docker tag makotomano/checkpoint3-api:latest makotomano/checkpoint3-api:1.0.0
+docker push makotomano/checkpoint3-api:1.0.0
+# opcional: também manter latest
+docker push makotomano/checkpoint3-api:latest
+```
+
+**Docker Hub:** [https://hub.docker.com/repository/docker/makotomano/checkpoint3-api/general](https://hub.docker.com/repository/docker/makotomano/checkpoint3-api/general)
+
+---
+
+## 🛠️ Comandos úteis do Docker
+
+```bash
+# Listar containers
+docker ps -a
+
+# Parar e remover rapidamente tudo (cuidado!)
+docker stop $(docker ps -aq) || true
+docker rm $(docker ps -aq) || true
+docker rmi $(docker images -q) || true
+
+# Limpeza geral (sem dó)
+docker system prune -af
+docker volume prune -f
+docker builder prune -af
+```
+
+> Dica: prefira `docker compose down -v` para remover também os volumes do compose quando quiser “zerar” o banco local.
+
+---
+
+## 👥 Autores
+
+* **Diogo Makoto Mano** – 3SIR – RM98446
+* **Thiago Ratão Passerini** – 3SIR – RM551351
+* **Victor Espanhol Henrique Santos** – 3SIR – RM552532
+
+---
+
+### Próximos passos sugeridos
+
+* Adicionar **exemplos de requests/responses** no README (curl ou HTTPie).
+* Incluir **status de CI** (GitHub Actions) e cobertura de testes.
+* Detalhar **mapeamento de entidades** e **migrations** (Flyway/Liquibase), se houver.
+
+Se quiser, já te entrego um `docker-compose.yml` pronto em um arquivo e um `.env.example`.
