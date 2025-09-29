@@ -58,8 +58,8 @@
 1. **Clone o repositório**
 
 ```bash
-git clone https://github.com/MakotoMano/checkpoint3.git
-cd checkpoint3
+git clone https://github.com/MakotoMano/checkpoint3-api.git
+cd checkpoint3-api
 ```
 
 2. **Rodando com Maven (perfil dev)**
