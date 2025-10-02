@@ -1,5 +1,11 @@
 # 📦 Checkpoint 3 → Checkpoint 1/Segundo Semestre (Docker & Compose)
 
+## 👥 Autores
+
+* **Diogo Makoto Mano** – 3SIR – RM98446
+* **Thiago Ratão Passerini** – 3SIR – RM551351
+* **Victor Espanhol Henrique Santos** – 3SIR – RM552532
+
 > API Java com Spring Boot para consolidar conceitos de **REST**, **camadas de serviço/repositório**, **validação**, **testes** e **empacotamento com Docker/Docker Compose**.
 
 [![Java 17](https://img.shields.io/badge/Java-17+-red)]() [![Spring Boot](https://img.shields.io/badge/Spring%20Boot-3.x-brightgreen)]() [![Maven](https://img.shields.io/badge/Maven-3.9+-blue)]() [![Docker](https://img.shields.io/badge/Docker-24+-informational)]()
@@ -250,23 +256,3 @@ docker system prune -af
 docker volume prune -f
 docker builder prune -af
 ```
-
-> Dica: prefira `docker compose down -v` para remover também os volumes do compose quando quiser “zerar” o banco local.
-
----
-
-## 👥 Autores
-
-* **Diogo Makoto Mano** – 3SIR – RM98446
-* **Thiago Ratão Passerini** – 3SIR – RM551351
-* **Victor Espanhol Henrique Santos** – 3SIR – RM552532
-
----
-
-### Próximos passos sugeridos
-
-* Adicionar **exemplos de requests/responses** no README (curl ou HTTPie).
-* Incluir **status de CI** (GitHub Actions) e cobertura de testes.
-* Detalhar **mapeamento de entidades** e **migrations** (Flyway/Liquibase), se houver.
-
-Se quiser, já te entrego um `docker-compose.yml` pronto em um arquivo e um `.env.example`.
