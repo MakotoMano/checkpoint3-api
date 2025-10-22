@@ -1,4 +1,4 @@
-# 📦 Checkpoint 3 — API Spring Boot (Docker & Compose)
+# 📦 Checkpoint 3&4&5 — API Spring Boot (Docker & Compose)
 
 > API Java com Spring Boot para consolidar conceitos de **REST**, **camadas de serviço/repositório**, **validação**, **testes** e **empacotamento com Docker/Docker Compose**.
 
@@ -303,6 +303,6 @@ docker builder prune -af
 ### 🐳 Docker Hub
 
 * **Repo:** `makotomano/checkpoint3-api`
-* Recomenda-se manter `latest` **e** uma tag de versão (`1.0.0`, `1.0.1` etc.).
+
 
 
