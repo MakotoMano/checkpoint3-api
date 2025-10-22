@@ -1,4 +1,13 @@
-# 📦 Checkpoint 3 → Checkpoint 1/Segundo Semestre (Docker & Compose)
+# 📦 Checkpoint 3 — API Spring Boot (Docker & Compose)
+
+> API Java com Spring Boot para consolidar conceitos de **REST**, **camadas de serviço/repositório**, **validação**, **testes** e **empacotamento com Docker/Docker Compose**.
+
+[![Java 17](https://img.shields.io/badge/Java-17+-red)]() [![Spring Boot](https://img.shields.io/badge/Spring%20Boot-3.x-brightgreen)]() [![Maven](https://img.shields.io/badge/Maven-3.9+-blue)]() [![Docker](https://img.shields.io/badge/Docker-24+-informational)]()
+[![CI](https://github.com/MakotoMano/checkpoint3-api/actions/workflows/ci.yml/badge.svg?branch=develop)](https://github.com/MakotoMano/checkpoint3-api/actions/workflows/ci.yml)
+[![CD](https://github.com/MakotoMano/checkpoint3-api/actions/workflows/cd.yml/badge.svg?branch=main)](https://github.com/MakotoMano/checkpoint3-api/actions/workflows/cd.yml)
+[![Release](https://github.com/MakotoMano/checkpoint3-api/actions/workflows/release.yml/badge.svg?branch=main)](https://github.com/MakotoMano/checkpoint3-api/actions/workflows/release.yml)
+
+---
 
 ## 👥 Autores
 
@@ -6,28 +15,25 @@
 * **Thiago Ratão Passerini** – 3SIR – RM551351
 * **Victor Espanhol Henrique Santos** – 3SIR – RM552532
 
-> API Java com Spring Boot para consolidar conceitos de **REST**, **camadas de serviço/repositório**, **validação**, **testes** e **empacotamento com Docker/Docker Compose**.
-
-[![Java 17](https://img.shields.io/badge/Java-17+-red)]() [![Spring Boot](https://img.shields.io/badge/Spring%20Boot-3.x-brightgreen)]() [![Maven](https://img.shields.io/badge/Maven-3.9+-blue)]() [![Docker](https://img.shields.io/badge/Docker-24+-informational)]()
-
 ---
 
 ## 🔗 Tabela de Conteúdo
 
-* [Objetivos](#-objetivos)
-* [Tech stack](#-tech-stack)
-* [Pré-requisitos](#-pré-requisitos)
-* [Como executar (Local)](#️-como-executar-local)
-* [Como executar (Docker)](#-como-executar-docker)
-* [Como executar (Docker Compose)](#-como-executar-docker-compose)
-* [Configuração (.env / perfis)](#-configuração-env--perfis)
-* [Swagger & Consoles](#-swagger--consoles)
-* [Funcionalidades](#-funcionalidades)
-* [Testes](#-testes)
-* [Boas práticas adotadas](#-boas-práticas-adotadas)
-* [Publicação no Docker Hub](#-publicação-no-docker-hub)
-* [Comandos úteis do Docker](#-comandos-úteis-do-docker)
-* [Autores](#-autores)
+* [✨ Objetivos](#-objetivos)
+* [🧰 Tech stack](#-tech-stack)
+* [✅ Pré-requisitos](#-pré-requisitos)
+* [▶️ Como executar (Local)](#️-como-executar-local)
+* [🐳 Como executar (Docker)](#-como-executar-docker)
+* [🧩 Como executar (Docker Compose)](#-como-executar-docker-compose)
+* [⚙️ Configuração (.env / perfis)](#️-configuração-env--perfis)
+* [📚 Swagger & Consoles](#-swagger--consoles)
+* [✅ Funcionalidades (exemplos)](#-funcionalidades-exemplos)
+* [🧪 Testes](#-testes)
+* [🔒 Boas práticas adotadas](#-boas-práticas-adotadas)
+* [☁️ Publicação no Docker Hub](#️-publicação-no-docker-hub)
+* [🛠️ Comandos úteis do Docker](#️-comandos-úteis-do-docker)
+* [🚀 CI/CD & Release — Checkpoint 2 (2025/3º semestre)](#-cicd--release--checkpoint-2-20253º-semestre)
+* [👥 Autores](#-autores)
 
 ---
 
@@ -68,7 +74,7 @@ git clone https://github.com/MakotoMano/checkpoint3-api.git
 cd checkpoint3-api
 ```
 
-2. **Rodando com Maven (perfil dev)**
+2. **Rodando com Maven (perfil `dev`)**
 
 ```bash
 ./mvnw spring-boot:run
@@ -105,13 +111,13 @@ docker run --rm --name checkpoint_api \
   makotomano/checkpoint3-api:latest
 ```
 
-> Em Linux, caso `host.docker.internal` não resolva, use o IP da sua máquina host.
+> **Linux:** se `host.docker.internal` não resolver, use o IP da sua máquina host.
 
 ---
 
 ## 🧩 Como executar (Docker Compose)
 
-**docker-compose.yml (exemplo)**
+**`docker-compose.yml` (exemplo)**
 
 ```yaml
 services:
@@ -148,9 +154,7 @@ volumes:
 
 ```bash
 docker compose up -d --build
-# logs em tempo real:
 docker compose logs -f api
-# derrubar
 docker compose down
 ```
 
@@ -183,7 +187,7 @@ SPRING_DATASOURCE_PASSWORD=postgres
 
   * [http://localhost:8080/swagger-ui.html](http://localhost:8080/swagger-ui.html)
   * (alternativo do springdoc) [http://localhost:8080/swagger-ui/index.html](http://localhost:8080/swagger-ui/index.html)
-* **H2 Console (se habilitado no dev):**
+* **H2 Console (se habilitado no `dev`):**
 
   * [http://localhost:8080/h2-console](http://localhost:8080/h2-console)
 
@@ -195,9 +199,9 @@ SPRING_DATASOURCE_PASSWORD=postgres
 * Listagem de **[Entidade]**
 * Atualização de **[Entidade]**
 * Exclusão de **[Entidade]**
-* Health check: `/actuator/health`
+* Health check: `GET /actuator/health`
 
-> Substitua **[Entidade]** pelo domínio real do projeto (ex.: `Produto`, `Cliente`, etc.) e, se possível, inclua exemplos de payload.
+> Substitua **[Entidade]** pelo domínio real do projeto (ex.: `Produto`, `Cliente`, etc.) e, se possível, inclua exemplos de payload no Swagger.
 
 ---
 
@@ -216,7 +220,7 @@ mvn test
 ## 🔒 Boas práticas adotadas
 
 * Validação com `@Valid` e Bean Validation
-* Tratamento de erros com **Exception Handler**
+* Tratamento de erros com **@ControllerAdvice / @ExceptionHandler**
 * Camadas claras (**Controller**, **Service**, **Repository**)
 * Uso de **DTOs** para entrada/saída
 * Documentação com **Swagger (springdoc-openapi)**
@@ -230,9 +234,11 @@ Recomendado versionar sua imagem além do `latest`.
 
 ```bash
 docker login
-docker tag makotomano/checkpoint3-api:latest makotomano/checkpoint3-api:1.0.0
+
+docker tag makotomano/checkpoint3-api:latest \
+  makotomano/checkpoint3-api:1.0.0
+
 docker push makotomano/checkpoint3-api:1.0.0
-# opcional: também manter latest
 docker push makotomano/checkpoint3-api:latest
 ```
 
@@ -243,16 +249,60 @@ docker push makotomano/checkpoint3-api:latest
 ## 🛠️ Comandos úteis do Docker
 
 ```bash
-# Listar containers
 docker ps -a
 
-# Parar e remover rapidamente tudo (cuidado!)
 docker stop $(docker ps -aq) || true
 docker rm $(docker ps -aq) || true
+
 docker rmi $(docker images -q) || true
 
-# Limpeza geral (sem dó)
 docker system prune -af
 docker volume prune -f
 docker builder prune -af
 ```
+
+---
+
+## 🚀 CI/CD & Release — Checkpoint 2 (2025/3º semestre)
+
+### 🧭 Branches utilizadas
+
+* `main` — estável
+* `develop` — desenvolvimento
+* `feature/*` — novas funcionalidades
+* `hotfix/*` — correções rápidas
+
+### 🔐 Segredos no GitHub (Actions → Secrets)
+
+* `DOCKERHUB_USERNAME` = `makotomano`
+* `DOCKERHUB_TOKEN` = Access Token do Docker Hub com **Write**
+
+### ⚙️ Workflows (`.github/workflows`)
+
+**CI — `ci.yml`**
+
+* **Disparo:** `push` em `develop`, `feature/**`, `hotfix/**`
+* **Tarefas:** `mvn test` e `mvn package` (Java 17)
+
+**CD (Docker Hub) — `cd.yml`**
+
+* **Disparo:** `pull_request` para `main`
+* **Tarefas:** build Docker e **push** no Docker Hub
+* **Tag gerada:** `pr-<numero-do-PR>-<shortsha>`
+* **Repositório:** `makotomano/checkpoint3-api`
+
+**Release — `release.yml`**
+
+* **Disparo:** `push` em `main`
+* **Tarefas:** gerar **CHANGELOG**, abrir **PR de release**; após merge, criar **Tag** e **GitHub Release**
+* **Tipo:** `maven` (lê o `pom.xml`)
+
+> Dica: use os *badges* no topo para visualizar o status de cada workflow.
+
+
+### 🐳 Docker Hub
+
+* **Repo:** `makotomano/checkpoint3-api`
+* Recomenda-se manter `latest` **e** uma tag de versão (`1.0.0`, `1.0.1` etc.).
+
+
