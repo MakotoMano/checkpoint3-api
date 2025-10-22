@@ -32,7 +32,7 @@
 * [🔒 Boas práticas adotadas](#-boas-práticas-adotadas)
 * [☁️ Publicação no Docker Hub](#️-publicação-no-docker-hub)
 * [🛠️ Comandos úteis do Docker](#️-comandos-úteis-do-docker)
-* [🚀 CI/CD & Release — Checkpoint 2 (2025/3º semestre)](#-cicd--release--checkpoint-2-20253º-semestre)
+* [🚀 CI/CD & Release — Checkpoint 2 (2025/2º semestre)](#-cicd--release--checkpoint-2-20253º-semestre)
 * [👥 Autores](#-autores)
 
 ---
@@ -263,7 +263,7 @@ docker builder prune -af
 
 ---
 
-## 🚀 CI/CD & Release — Checkpoint 2 (2025/3º semestre)
+## 🚀 CI/CD & Release — Checkpoint 2 (2025/2º semestre)
 
 ### 🧭 Branches utilizadas
 
